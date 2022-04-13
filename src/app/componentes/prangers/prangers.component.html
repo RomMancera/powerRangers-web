@@ -1,0 +1,52 @@
+<div class="row pt-4">
+    <div class="col-lg-4 pb-4" *ngFor="let ranger of Rangers; let i = index">
+
+        <!-- Card Narrower -->
+        <div class="card card-cascade narrower ">
+
+            <!-- Card image -->
+            <div class="view view-cascade overlay">
+                <img class="card-img-top" [src]="ranger.imagen | noImage" alt="Card image cap" height="350">
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+            <!-- Card content -->
+            <div class="card-body card-body-cascade text-center">
+
+                <!-- Label -->
+                <h5 [ngClass]="color" class="pink-text pb-2 pt-1 text-center"> {{ranger.nombre}}</h5>
+                <!-- Title -->
+                <h4 class="font-weight-bold card-title">Ranger {{ranger.color}}</h4>
+                <!-- Text -->
+                <div>
+                    <h4>{{ranger.temporada}}</h4>
+                    <hr>
+                    <h4>{{ranger.zord}}</h4>
+                    <hr>
+                    <div class="row offset-2">
+                        <button *ngIf="ranger.estado" type="button" class="btn btn-primary btn-sm ">Vivo</button>
+                        <button *ngIf="!ranger.estado" type="button" class="btn btn-danger btn-sm">Muerto</button>
+                        <button *ngIf="ranger.genero === 'true' " type="button" class="btn btn-pink btn-sm ">Mujer</button>
+                        <button *ngIf="ranger.genero === 'false'" type="button" class="btn btn-secondary btn-sm">Hombre</button>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Configurar
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                        <h6 class="dropdown-header">Opciones</h6>
+                        <a [routerLink]="['/ranger', ranger.id]" class="dropdown-item blue-text" href="#">Editar</a>
+                        <a (click)="borrarRange(ranger, i)" class="dropdown-item red-text">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+            <button (click)="color='text-primary'" type="button" class="btn btn-outline-primary"> Cambiar color del nombre</button>
+        </div>
+        <!-- Card Narrower -->
+
+    </div>
+</div>
